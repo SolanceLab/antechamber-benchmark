@@ -1,0 +1,29 @@
+{
+ "rule": "first 2 non-abstention LongMemEval ids per type, in PRELIM_SET.json order (fixed 17 Oct, before any answering result)",
+ "lme": {
+  "knowledge-update": [
+   "9bbe84a2",
+   "6aeb4375"
+  ],
+  "multi-session": [
+   "d905b33f",
+   "d6062bb9"
+  ],
+  "single-session-assistant": [
+   "65240037",
+   "ceb54acb"
+  ],
+  "single-session-preference": [
+   "07b6f563",
+   "d24813b1"
+  ],
+  "single-session-user": [
+   "4fd1909e",
+   "5d3d2817"
+  ],
+  "temporal-reasoning": [
+   "gpt4_f420262c",
+   "gpt4_6dc9b45b"
+  ]
+ }
+}
