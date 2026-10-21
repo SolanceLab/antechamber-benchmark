@@ -59,6 +59,18 @@ long is standard search's real loss: counted and reported, not cut to fit.
   adapter. The fix is product work; the result will be re-measured, not re-described.
 - Every scored verdict was spot-checked by hand (20 of 20 on the check set, 10 of 10 on the full LongMemEval run).
 
+## Next: LongMemEval-M (planned, not yet run)
+
+LongMemEval-S gives each question about 48 past conversations (~115k tokens). That is small enough that handing a
+model a large slice of whole conversations can score well without much real finding. LongMemEval-M gives each
+question about 500 conversations (~1.5M tokens), where no slice is safe and only finding works.
+
+The plan: recall only, no language model, local embeddings. Three contenders on the same questions: plain vector
+search, whole conversations picked by search up to ~24k tokens, and Antechamber. Scored by whether every evidence
+line was handed over, by whether any was, and by how much text each handed over. The same questions also run on
+LongMemEval-S with the same code, so the only difference is the size of the history. The held-out questions are not
+used. It runs slowly on one Mac (about 390,000 conversation lines to embed), so results will be added here when done.
+
 ## Rules we hold ourselves to
 
 - One locked setup per table: code, data, settings and model versions are fingerprinted; the runner refuses to start
