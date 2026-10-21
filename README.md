@@ -44,7 +44,7 @@ long is standard search's real loss: counted and reported, not cut to fit.
 > These numbers were produced by the pre-release version of this code (v3.4.0). Before this repository goes public
 > they will be re-run with the code published here (v3.5.0), so every number comes from code you can read.
 
-| All answerable questions, embedder qwen3-embedding 4B | Standard search | Antechamber | Lead |
+| Recall (evidence found), embedder qwen3-embedding 4B | Standard search | Antechamber | Lead |
 |---|---|---|---|
 | LoCoMo, never seen (1,493 questions) | 56.7% | 78.9% | +22.2 |
 | LongMemEval-S, never seen (412 questions) | 62.6% | 80.3% | +17.7 |
