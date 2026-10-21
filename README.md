@@ -46,10 +46,13 @@ long is standard search's real loss: counted and reported, not cut to fit.
 
 | All answerable questions, embedder qwen3-embedding 4B | Standard search | Antechamber | Lead |
 |---|---|---|---|
-| LoCoMo (1,532 questions) | 56.5% | 78.6% | +22.1 |
-| LongMemEval-S (470 questions) | 63.8% | 80.6% | +16.8 |
+| LoCoMo, never seen (1,493 questions) | 56.7% | 78.9% | +22.2 |
+| LongMemEval-S, never seen (412 questions) | 62.6% | 80.3% | +17.7 |
+| LoCoMo, all answerable incl. the questions used for tuning (1,532) | 56.5% | 78.6% | +22.1 |
+| LongMemEval-S, all answerable incl. the questions used for tuning (470) | 63.8% | 80.6% | +16.8 |
 
-- **Overfitting check (LongMemEval):** lead +10.3 on the 60 questions seen during tuning, +17.7 on the 440 never seen.
+- **Overfitting check (LongMemEval):** lead +10.3 on the 58 scored questions seen during tuning, +17.7 on the 412 never seen.
+  "Never seen" excludes every question used while tuning (39 LoCoMo, 58 LongMemEval); it is the headline.
 - **Smart or generous (99-question check set):** giving standard search the same surrounding lines closes about half
   the gap; the other half is Antechamber choosing better.
 - **Claim 3 does not hold yet:** the notes and vector-database adapters return less surrounding context than the chat
