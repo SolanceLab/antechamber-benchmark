@@ -73,6 +73,11 @@ used. It runs slowly on one Mac (about 390,000 conversation lines to embed), so 
 
 ## Rules we hold ourselves to
 
+- **No leaderboard position.** Published LoCoMo and LongMemEval tables mostly used GPT-4o-mini to answer and GPT-4o or
+  GPT-4o-mini to judge; those models are no longer available on OpenAI's API (owner's note, 21 Oct 2026), so those
+  setups cannot be rerun by anyone. Answer scores also move with the answering model and the judge (an independent
+  audit found GPT-4o-mini accepting 62.8% of deliberately wrong LoCoMo answers). We lead with recall against plain
+  search on never-seen questions, which anyone can rerun from this repository with any embedder.
 - One locked setup per table: code, data, settings and model versions are fingerprinted; the runner refuses to start
   if anything changed. Any change is a new version and a full re-run; numbers from different versions never share a
   table.
