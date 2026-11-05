@@ -1,4 +1,5 @@
 #!/bin/sh
+# Antechamber Benchmark — Copyright (c) 2026 House of Solance. PolyForm Noncommercial 1.0.0. Required Notice: Copyright (c) 2026 House of Solance (https://github.com/SolanceLab)
 # Fetch the two public benchmark datasets and verify they are byte-identical to the files every published run used.
 set -e
 cd "$(dirname "$0")"

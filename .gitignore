@@ -1,3 +1,6 @@
-data/*.json
+data/*
+!data/download.sh
+runs/
+cache/
 __pycache__/
 .DS_Store
