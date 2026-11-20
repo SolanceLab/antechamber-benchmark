@@ -4,8 +4,8 @@ Made by House of Solance · free for noncommercial use · credit required
 
 ## What it is
 
-The open, locked test behind every number we publish for **Antechamber** (our recall engine) and **Memory entry**
-(our memory writer). Anyone can re-run it and get the same numbers.
+The open, locked test behind every number we publish for **Antechamber** (our recall engine) and **Scriptorium**
+(our note writer). Anyone can re-run it and get the same numbers.
 
 ## Results
 
@@ -44,7 +44,7 @@ of that lead is still more text; and by +5.1 on LongMemEval-S at equal text (abo
   re-measured, not re-described.
 - **Answering** (a model answers from what recall returned, a fixed judge marks it) was measured separately on 600 +
   600 LoCoMo and 30 + 30 LongMemEval questions; its code is not in this repository yet. In words: on a small local
-  model (Qwen 3.5 9B) Antechamber plus our memory writer and People cards beat a generic memory writer by about 6
+  model (Qwen 3.5 9B) Antechamber plus our note writer and People cards beat a generic note writer by about 6
   points on both LoCoMo sets; on large models the two tied.
 
 ## What you need
