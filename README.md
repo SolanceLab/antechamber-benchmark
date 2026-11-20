@@ -55,7 +55,7 @@ of that lead is still more text; and by +5.1 on LongMemEval-S at equal text (abo
   Standard search needs no engine.
 - Only for the vector-database format: Postgres with pgvector.
 
-## Install
+## Quick start
 
 ```sh
 git clone https://github.com/SolanceLab/antechamber-benchmark && cd antechamber-benchmark
@@ -203,3 +203,8 @@ Removing or replacing it breaks the licence.
 
 [PolyForm Noncommercial 1.0.0](LICENSE.md). See [NOTICE.md](NOTICE.md).
 
+## Support
+
+If you find this useful, consider supporting our work:
+
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Us-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/houseofsolance)
