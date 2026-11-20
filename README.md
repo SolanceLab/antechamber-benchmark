@@ -7,6 +7,15 @@ Made by House of Solance · free for noncommercial use · credit required
 The open, locked test behind every number we publish for **Antechamber** (our recall engine) and **Scriptorium**
 (our note writer). Anyone can re-run it and get the same numbers.
 
+## Quick start
+
+```sh
+git clone https://github.com/SolanceLab/antechamber-benchmark && cd antechamber-benchmark
+make test        # offline checks; no model, no engine, no datasets needed
+```
+
+The full run, from the datasets to the paired statistics, is under [Install](#install).
+
 ## Results
 
 Produced by the code in this repository (benchmark v4.4.3; LOCK.json records every input) against the published
@@ -55,7 +64,7 @@ of that lead is still more text; and by +5.1 on LongMemEval-S at equal text (abo
   Standard search needs no engine.
 - Only for the vector-database format: Postgres with pgvector.
 
-## Quick start
+## Install
 
 ```sh
 git clone https://github.com/SolanceLab/antechamber-benchmark && cd antechamber-benchmark
