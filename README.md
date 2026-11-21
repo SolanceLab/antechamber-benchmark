@@ -38,15 +38,21 @@ Giving standard search the same surrounding lines closes about two thirds of the
 
 | All answerable | Standard search | Standard search + the same surrounding lines | Antechamber |
 |---|---|---|---|
-| LoCoMo | 56.5% (1,024 characters; tokens pending) | 71.7% (4,703 characters; tokens pending) | **78.6%** (8,253 characters; tokens pending) |
-| LongMemEval-S | 63.8% (2,576 characters; tokens pending) | 72.6% (25,746 characters; tokens pending) | **77.7%** (24,964 characters; tokens pending) |
+| LoCoMo | 56.5% (1,024 characters; tokens not counted) | 71.7% (4,703 characters; 1,773 tokens) | **78.6%** (8,253 characters; 2,633 tokens) |
+| LongMemEval-S | 63.8% (2,576 characters; tokens not counted) | 72.6% (25,746 characters; 8,860 tokens) | **77.7%** (24,964 characters; 7,041 tokens) |
+
+*LoCoMo token counts use the rendered text the answering model received, averaging 5,037 characters per question for standard search with surrounding lines and 7,327 for Antechamber.*
+
+*LongMemEval-S token counts use the rendered text the answering model received, averaging 25,979 characters per question for standard search with surrounding lines and 20,673 for Antechamber.*
+
+*Mean tokens per question were counted on 21 Nov 2026 with Anthropic’s token counting endpoint using `claude-sonnet-5-5`.*
 
 Given the same surrounding lines, Antechamber leads by +6.9 on LoCoMo (p = 2.7×10⁻¹⁴, 95% interval 4.5 to 9.4).
-Standard search still returned less text (about 4,700 characters against 8,300, with tokens pending for both), so
+Standard search still returned less text (about 4,700 characters against 8,300), so
 some of the lead may come from that difference.
 
 On LongMemEval-S, Antechamber leads standard search by +5.1 at roughly equal text (about 25,000 characters each,
-with tokens pending for both, p = 0.037, 95% interval 0.6 to 9.8).
+p = 0.037, 95% interval 0.6 to 9.8).
 
 - **Correction (21 Oct 2026):** the pre-release scorer also counted text fields the reader is never shown. Scored on
   reader-visible text only, LongMemEval's Antechamber result is 77.7%, not the 80.3% (never seen) / 80.6% (all) we
@@ -63,12 +69,12 @@ The benchmark used the October 2026 instructions. The current default instructio
 
 | LoCoMo setup | Mean characters | Mean tokens | Reserved seats | Writer prompt | Writer model |
 |---|---:|---|---:|---|---|
-| Chats only | 7,214 | Tokens pending | 0 | — | — |
-| Generic notes | 7,997 | Tokens pending | 3 | `generic_memory.md` | `claude-sonnet-5-5` |
-| Our notes plus People cards | 10,586 | Tokens pending | 3 | October `prompt-public.md` | `claude-sonnet-5-5` |
+| Chats only | 7,214 | 2,591 | 0 | — | — |
+| Generic notes | 7,997 | 2,874 | 3 | `generic_memory.md` | `claude-sonnet-5-5` |
+| Our notes plus People cards | 10,586 | 3,755 | 3 | October `prompt-public.md` | `claude-sonnet-5-5` |
 
 The sizes refer to the context shown to the answering model after formatting and truncation, averaged per question.
-Token counts and the tokenizer version are pending. Both notes setups returned more text than chats alone.
+Both notes setups returned more text than chats alone.
 The size-matched check was too small to establish whether notes help at equal text.
 
 Answering was measured separately on 600 + 600 LoCoMo and 30 + 30 LongMemEval questions. A model answered from the
