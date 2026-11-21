@@ -1,11 +1,12 @@
 # Antechamber Benchmark
 
+[Scriptorium](https://github.com/SolanceLab/scriptorium) writes notes, and [Antechamber](https://github.com/SolanceLab/antechamber) finds them and writes nothing.
+
 Made by House of Solance · free for noncommercial use · credit required
 
 ## What it is
 
-The open, locked test behind every number we publish for **Antechamber** (our recall engine) and **Scriptorium**
-(our note writer). Anyone can re-run it and get the same numbers.
+The open, locked test for Antechamber's recall results. The notes results below come from a separate answering test.
 
 ## Quick start
 
@@ -32,18 +33,20 @@ shown.
 "Never seen" excludes every question looked at while Antechamber was tuned (39 LoCoMo, 58 LongMemEval); it is the
 headline. On those tuning questions the lead was +20.5 (LoCoMo) and +5.2 (LongMemEval).
 
-**Smart or generous?** Antechamber returns each hit with its surrounding lines, so it hands the reader more text.
+**Smart or generous?** Antechamber returns each hit with its surrounding lines, so the reader sees more text.
 Giving standard search the same surrounding lines closes about two thirds of the gap:
 
 | All answerable | Standard search | Standard search + the same surrounding lines | Antechamber |
 |---|---|---|---|
-| LoCoMo | 56.5% (1,024 characters) | 71.7% (4,703 characters) | **78.6%** (8,253 characters) |
-| LongMemEval-S | 63.8% (2,576 characters) | 72.6% (25,746 characters) | **77.7%** (24,964 characters) |
+| LoCoMo | 56.5% (1,024 characters; tokens pending) | 71.7% (4,703 characters; tokens pending) | **78.6%** (8,253 characters; tokens pending) |
+| LongMemEval-S | 63.8% (2,576 characters; tokens pending) | 72.6% (25,746 characters; tokens pending) | **77.7%** (24,964 characters; tokens pending) |
 
-Given the same surrounding lines, standard search still trails: Antechamber leads by +6.9 on LoCoMo (p = 2.7×10⁻¹⁴,
-95% interval 4.5 to 9.4), where standard search was handed less text (about 4,700 characters against 8,300), so part
-of that lead is still more text; and by +5.1 on LongMemEval-S at equal text (about 25,000 characters each; p = 0.037,
-95% interval 0.6 to 9.8). Most of the lead is returning the surrounding conversation; the rest is choosing better.
+Given the same surrounding lines, Antechamber leads by +6.9 on LoCoMo (p = 2.7×10⁻¹⁴, 95% interval 4.5 to 9.4).
+Standard search still returned less text (about 4,700 characters against 8,300, with tokens pending for both), so
+some of the lead may come from that difference.
+
+On LongMemEval-S, Antechamber leads standard search by +5.1 at roughly equal text (about 25,000 characters each,
+with tokens pending for both, p = 0.037, 95% interval 0.6 to 9.8).
 
 - **Correction (21 Oct 2026):** the pre-release scorer also counted text fields the reader is never shown. Scored on
   reader-visible text only, LongMemEval's Antechamber result is 77.7%, not the 80.3% (never seen) / 80.6% (all) we
@@ -51,10 +54,26 @@ of that lead is still more text; and by +5.1 on LongMemEval-S at equal text (abo
 - **Claim 3 (any storage format) is not re-measured in this version.** In the pre-release run the notes and
   vector-database adapters returned less surrounding context than the chat adapter and did not hold; it will be
   re-measured, not re-described.
-- **Answering** (a model answers from what recall returned, a fixed judge marks it) was measured separately on 600 +
-  600 LoCoMo and 30 + 30 LongMemEval questions; its code is not in this repository yet. In words: on a small local
-  model (Qwen 3.5 9B) Antechamber plus our note writer and People cards beat a generic note writer by about 6
-  points on both LoCoMo sets; on large models the two tied.
+
+### With chat notes
+
+In these tests, the notes were written by [Scriptorium](https://github.com/SolanceLab/scriptorium)'s notes writer, a script that reads each conversation and writes short notes from it, because test conversations come with no notes of their own.
+
+The benchmark used the October 2026 instructions. The current default instructions changed in version 1.7.0.
+
+| LoCoMo setup | Mean characters | Mean tokens | Reserved seats | Writer prompt | Writer model |
+|---|---:|---|---:|---|---|
+| Chats only | 7,214 | Tokens pending | 0 | — | — |
+| Generic notes | 7,997 | Tokens pending | 3 | `generic_memory.md` | `claude-sonnet-5-5` |
+| Our notes plus People cards | 10,586 | Tokens pending | 3 | October `prompt-public.md` | `claude-sonnet-5-5` |
+
+The sizes refer to the context shown to the answering model after formatting and truncation, averaged per question.
+Token counts and the tokenizer version are pending. Both notes setups returned more text than chats alone.
+The size-matched check was too small to establish whether notes help at equal text.
+
+Answering was measured separately on 600 + 600 LoCoMo and 30 + 30 LongMemEval questions. A model answered from the
+retrieved text and a fixed judge scored its answers. On Qwen 3.5 9B, Antechamber with our notes and People cards beat
+generic notes by about 6 points on both LoCoMo sets. On large models the two tied. The answering code is outside this repository.
 
 ## What you need
 
@@ -148,7 +167,7 @@ never-seen questions separately, with the Antechamber lead on each. The never-se
 
 ## How it works
 
-**Recall** — when a question is asked, does the engine hand back the conversation lines that hold the answer?
+**Recall** — when a question is asked, does the engine return the conversation lines that hold the answer?
 A line counts as found when at least 60% of its four-word phrases appear in the text the engine returned. Only text a
 reader actually sees counts. Errors and time-outs count as not found and never leave the total.
 
@@ -187,13 +206,13 @@ version, with a full re-run.
 
 ## Next: LongMemEval-M (planned, not yet run)
 
-LongMemEval-S gives each question about 48 past conversations (~115k tokens). That is small enough that handing a
-model a large slice of whole conversations can score well without much real finding. LongMemEval-M gives each
+LongMemEval-S gives each question about 48 past conversations (~115k tokens). A model can score well with a large
+slice of whole conversations and little targeted retrieval. LongMemEval-M gives each
 question about 500 conversations (~1.5M tokens), where no slice is safe and only finding works.
 
 The plan: recall only, no language model, local embeddings. Three contenders on the same questions: plain vector
 search, whole conversations picked by search up to ~24k tokens, and Antechamber. Scored by whether every evidence
-line was handed over, by whether any was, and by how much text each handed over. The same questions also run on
+line was returned, by whether any was returned, and by how much text each method returned. The same questions also run on
 LongMemEval-S with the same code, so the only difference is the size of the history. The held-out questions are not
 used. It runs slowly on one Mac (about 390,000 conversation lines to embed), so results will be added here when done.
 
