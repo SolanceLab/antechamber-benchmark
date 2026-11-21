@@ -1,8 +1,8 @@
 # Antechamber Benchmark
 
-[Scriptorium](https://github.com/SolanceLab/scriptorium) writes notes, and [Antechamber](https://github.com/SolanceLab/antechamber) finds them and writes nothing.
-
 Made by House of Solance · free for noncommercial use · credit required
+
+[Scriptorium](https://github.com/SolanceLab/scriptorium) writes notes, and [Antechamber](https://github.com/SolanceLab/antechamber) finds them and writes nothing.
 
 ## What it is
 

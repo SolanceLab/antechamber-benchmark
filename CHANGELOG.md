@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+Wording and figures on the page only; no result, data or script changed. The notes section states who wrote the test notes (Scriptorium's notes writer, October 2026 instructions) and that notes help at equal text is not proven. Real token counts sit beside every text size, counted with Anthropic's token counter on the text the answering model received.
+
 ## 1.0.0
 
 First release. Every result in the README is produced by this repository's own code (harness v4.4.3).
